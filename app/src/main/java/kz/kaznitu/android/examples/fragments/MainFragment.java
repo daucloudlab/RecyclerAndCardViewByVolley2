@@ -43,12 +43,13 @@ public class MainFragment extends Fragment{
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(llm);
         recyclerView.setAdapter(adapter);
+
         adapter.setData(movies);
 
         dialog = new ProgressDialog(getActivity()) ;
         dialog.setMessage("Күту тұрыңыз...");
         dialog.setCancelable(false);
-
+        showDialog();
         getAndInitData();
 
         return rootView ;
@@ -61,7 +62,6 @@ public class MainFragment extends Fragment{
                     public void onResponse(JSONArray response) {
                         try{
                             Log.d("MYAPP", response.toString()) ;
-                            showDialog();
                             for(int i = 0; i < response.length(); i++){
                                 JSONObject object =response.getJSONObject(i) ;
                                 Movie movie = new Movie();
